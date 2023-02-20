@@ -14,7 +14,7 @@
 ## В виде unity модуля
 Поддерживается установка в виде unity-модуля через git-ссылку в PackageManager или прямое редактирование `Packages/manifest.json`:
 ```
-"com.tripolis.inc.ecspackage": "",
+"com.tripolis.inc.ecspackage": "git@github.com:Tripolis-Inc/LeoECS-Unity-Integration.git",
 ```
 
 ## В виде исходного кода
