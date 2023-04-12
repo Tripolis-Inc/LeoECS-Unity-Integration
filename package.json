@@ -5,7 +5,8 @@
     "description": "This is minimal functionality to use EcsLite",
     "unity": "2020.1",
     "dependencies": {
-        "com.leopotam.ecslite": "2023.1.22"
+        "com.leopotam.ecslite": "2023.1.22",
+        "com.unity.test-framework": "1.1.33"
     },
    "keywords": [
       "ecs",

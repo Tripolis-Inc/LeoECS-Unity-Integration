@@ -3,7 +3,9 @@
 // Copyright (c) 2023  Vladimir Karyagin <tripolis777@gmail.com>
 // ----------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.GameComponent;
 using UnityEngine;
@@ -20,6 +22,18 @@ namespace TripolisInc.EcsCore.Service
 
         public bool AddWorld(EcsWorld world, EcsWorldComponent component)
         {
+            if (world == null)
+            {
+                Debug.LogError("World cannot be null");
+                return false;
+            }
+
+            if (component == null)
+            {
+                Debug.LogError("World component cannot be null.");
+                return false;
+            }
+
             if (_worldComponents.ContainsKey(world))
             {
                 Debug.LogWarning($"World - {world} already added.");
@@ -30,11 +44,20 @@ namespace TripolisInc.EcsCore.Service
             return true;
         }
 
-        public void RemoveWorld(EcsWorld world) => _worldComponents.Remove(world);
+        public void RemoveWorld(EcsWorld world)
+        {
+            if (world == null)
+            {
+                Debug.LogError("World cannot be null.");
+                return;
+            }
+            
+            _worldComponents.Remove(world);
+        }
 
         public EcsWorldComponent GetWorld(EcsWorld world)
         {
-            if (_worldComponents.TryGetValue(world, out var component))
+            if (world != null && _worldComponents.TryGetValue(world, out var component))
                 return component;
 
             Debug.LogError("World not found.");
