@@ -7,6 +7,7 @@ using System;
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.Component;
 using TripolisInc.EcsCore.GameComponent;
+using TripolisInc.EcsCore.Interfaces;
 using TripolisInc.EcsCore.Service;
 using UnityEngine;
 
@@ -19,22 +20,22 @@ namespace TripolisInc.EcsCore.Misc
         public static bool IsGameObjectEntity(this EcsWorld world, int entity) =>
             world.GetPool<UnityComponent<EcsEntityComponent>>().Has(entity);
 
-        public static int CreateEntityFromPrefab(this EcsWorld world, GameObject prefab, Transform parent = null)
+        public static int CreateEntityFromPrefab<T>(this EcsWorld world, GameObject prefab, Transform parent = null)  where T : EcsMonoBehavior, IEcsEntityComponent
         {
             var worldComponent = EcsWorldsContainer.Instance.GetWorld(world);
             if (worldComponent == null)
                 return DontCreatedEntity;
 
-            return worldComponent.CreateEntityFromPrefab(prefab, parent);
+            return worldComponent.CreateEntityFromPrefab<T>(prefab, parent);
         }
 
-        public static int CreateGameObjectEntity(this EcsWorld world, string name, Transform parent = null)
+        public static int CreateGameObjectEntity<T>(this EcsWorld world, string name, Transform parent = null)  where T : EcsMonoBehavior, IEcsEntityComponent
         {
             var worldComponent = EcsWorldsContainer.Instance.GetWorld(world);
             if (worldComponent == null)
                 return DontCreatedEntity;
 
-            return worldComponent.CreateEntity(name, parent);
+            return worldComponent.CreateEntity<T>(name, parent);
         }
 
         public static IEcsPool GetOrCreatePoolByType(this EcsWorld world, Type type)

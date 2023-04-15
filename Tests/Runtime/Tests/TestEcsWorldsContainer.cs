@@ -5,7 +5,7 @@
 
 using Leopotam.EcsLite;
 using NUnit.Framework;
-using Tests.Runtime.Components;
+using Tests.Runtime.UnityComponents;
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Service;
 using UnityEngine;
@@ -14,7 +14,7 @@ using UnityEngine.TestTools;
 namespace TripolisInc.Test.Runtime
 {
     [TestFixture(Category = "Service")]
-    public class TestEcsWorldContainer
+    public class TestEcsWorldsContainer
     {
         private EcsWorld _ecsWorld;
         private GameObject _worldContainer;

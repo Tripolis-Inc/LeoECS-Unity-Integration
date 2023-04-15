@@ -3,14 +3,16 @@
 // Copyright (c) 2023  Vladimir Karyagin <tripolis777@gmail.com>
 // ----------------------------------------------------------------------------
 
+using System;
 using Leopotam.EcsLite;
+using TripolisInc.EcsCore.Interfaces;
 using TripolisInc.EcsCore.Misc;
 using TripolisInc.EcsCore.Service;
 using UnityEngine;
 
 namespace TripolisInc.EcsCore.GameComponent
 {
-    public abstract class EcsWorldComponent : MonoBehaviour
+    public abstract class EcsWorldComponent : EcsMonoBehavior
     {
         private EcsWorld _world;
         private IEcsSystems _systems;
@@ -60,19 +62,22 @@ namespace TripolisInc.EcsCore.GameComponent
             return _world;
         }
 
-        public int CreateEntityFromPrefab(GameObject prefab, Transform parent = null)
+        public int CreateEntityFromPrefab<T>(GameObject prefab, Transform parent = null) where T : EcsMonoBehavior, IEcsEntityComponent
         {
+            if (prefab == null)
+                throw new ArgumentNullException(nameof(prefab));
+            
             if (parent == null)
                 parent = transform;
             
             var entity = _world.NewEntity();
             var go = Instantiate(prefab, parent);
-            var entityComponent = go.GetOrAddComponent<EcsEntityComponent>();
-            entityComponent.Init(this, entity);
+            var entityComponent = go.GetOrAddComponent<T>();
+            entityComponent.Bind(this, entity);
             return entity;
         }
 
-        public int CreateEntity(string name = null, Transform parent = null)
+        public int CreateEntity<T>(string name = null, Transform parent = null) where T : EcsMonoBehavior, IEcsEntityComponent
         {
             if (parent == null)
                 parent = transform;
@@ -81,21 +86,24 @@ namespace TripolisInc.EcsCore.GameComponent
                 name = "EntityObject";
 
             var entity = _world.NewEntity();
-            var go = new GameObject(name, typeof(EcsEntityComponent));
+            var go = new GameObject(name, typeof(T));
             go.transform.SetParent(parent);
             
-            var entityComponent = go.GetComponent<EcsEntityComponent>();
-            entityComponent.Init(this, entity);
+            var entityComponent = go.GetComponent<T>();
+            entityComponent.Bind(this, entity);
             return entity;
         }
 
-        public void BindEntity(EcsEntityComponent component)
+        public void BindEntity(IEcsEntityComponent component)
         {
-            if (component == null)
+            if (!component.IsAlive())
+            {
+                Debug.LogError("Component cannot be bind, because he isn't alive.");
                 return;
+            }
 
             var entity = _world.NewEntity();
-            component.Init(this, entity);
+            component.Bind(this, entity);
         }
     }
 }

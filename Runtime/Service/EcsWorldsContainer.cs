@@ -3,9 +3,7 @@
 // Copyright (c) 2023  Vladimir Karyagin <tripolis777@gmail.com>
 // ----------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.GameComponent;
 using UnityEngine;

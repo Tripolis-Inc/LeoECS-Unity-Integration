@@ -9,8 +9,8 @@ namespace TripolisInc.Test.Runtime.Helpers
 {
     public static class TestConstants
     {
-        public const string PrefabPath = 
-            "Packages/com.tripolis.inc.ecspackage/Tests/Runtime/TestResources/EntityPrefab.prefab";
+        public const string PrefabPath = "EntityPrefab"; 
+            //"Packages/com.tripolis.inc.ecspackage/Tests/Runtime/Resources/EntityPrefab.prefab";
 
         public static class Scenes
         {

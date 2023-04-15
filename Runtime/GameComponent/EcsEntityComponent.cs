@@ -7,12 +7,13 @@ using System;
 using System.Collections.Generic;
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.Component;
+using TripolisInc.EcsCore.Interfaces;
 using TripolisInc.EcsCore.Misc;
 using UnityEngine;
 
 namespace TripolisInc.EcsCore.GameComponent
 {
-    public class EcsEntityComponent : MonoBehaviour
+    public class EcsEntityComponent : EcsMonoBehavior, IEcsEntityComponent
     {
 #if UNITY_EDITOR
         public const string ECS_COMPONENTS_PROP_NAME = nameof(ecsComponents);
@@ -21,9 +22,9 @@ namespace TripolisInc.EcsCore.GameComponent
         [SerializeField] 
         private EcsWorldComponent world;
         [SerializeField]
-        private UnityEngine.Component[] unityComponents;
+        private UnityEngine.Component[] unityComponents = Array.Empty<UnityEngine.Component>();
         [SerializeField]
-        private List<ComponentContainer> ecsComponents;
+        private List<ComponentContainer> ecsComponents = new List<ComponentContainer>();
 
         private int _entityId;
         private bool _isInited = false;
@@ -43,7 +44,7 @@ namespace TripolisInc.EcsCore.GameComponent
             world.BindEntity(this);
         }
 
-        public void Init(EcsWorldComponent world, int entityId)
+        public void Bind(EcsWorldComponent world, int entityId)
         {
             if (_isInited)
                 return;
@@ -90,7 +91,9 @@ namespace TripolisInc.EcsCore.GameComponent
             }
         }
 
-        private void OnDestroy()
+        private void OnDestroy() => Dispose();
+
+        public void Dispose()
         {
             if (world == null)
                 return;

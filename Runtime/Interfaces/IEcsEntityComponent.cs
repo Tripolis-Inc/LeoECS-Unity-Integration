@@ -3,20 +3,14 @@
 // Copyright (c) 2023  Vladimir Karyagin <tripolis777@gmail.com>
 // ----------------------------------------------------------------------------
 
+using System;
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.GameComponent;
 
-namespace Tests.Runtime.UnityComponents
+namespace TripolisInc.EcsCore.Interfaces
 {
-    public class StubWorldComponent : EcsWorldComponent
+    public interface IEcsEntityComponent : IMonoBehavior, IDisposable
     {
-        protected override void PopulateSystems(IEcsSystems systems)
-        {
-        }
-
-        protected override object GetSharedData()
-        {
-            return null;
-        }
+        void Bind(EcsWorldComponent world, int entityId);
     }
 }
