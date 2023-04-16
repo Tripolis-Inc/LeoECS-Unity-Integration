@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 401230091967147679}
   - component: {fileID: 823014485972096308}
   m_Layer: 0
-  m_Name: EntityPrefab
+  m_Name: TestEntityPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,12 +50,12 @@ MonoBehaviour:
   - {fileID: 823014485972096308}
   ecsComponents:
   - component:
-      rid: 5360018294094430216
+      rid: 5360018403939319810
   references:
     version: 2
     RefIds:
-    - rid: 5360018294094430216
-      type: {class: TestComponent, ns: TripolisInc.Test.EcsCore.Component, asm: tripolis.inc.test.runtime}
+    - rid: 5360018403939319810
+      type: {class: TestComponent, ns: Tests.Runtime.Ecs.Components, asm: tripolis.inc.test.runtime}
       data:
         test: 
 --- !u!65 &823014485972096308

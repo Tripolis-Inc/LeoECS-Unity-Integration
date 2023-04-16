@@ -6,15 +6,15 @@
 using System.Collections;
 using System.Linq;
 using NUnit.Framework;
-using Tests.Runtime.UnityComponents;
+using Tests.Runtime.Ecs.Components;
+using Tests.Runtime.Engine;
+using Tests.Runtime.Helpers;
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Misc;
-using TripolisInc.Test.EcsCore.Component;
-using TripolisInc.Test.Runtime.Helpers;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace TripolisInc.Test.Runtime.UnityComponent
+namespace Tests.Runtime.Tests.UnityComponent
 {
     [TestFixture(Category = "Unity Component")]
     public class TestEcsEntityComponent

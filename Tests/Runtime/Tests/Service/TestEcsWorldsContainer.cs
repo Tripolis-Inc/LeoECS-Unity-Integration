@@ -5,13 +5,13 @@
 
 using Leopotam.EcsLite;
 using NUnit.Framework;
-using Tests.Runtime.UnityComponents;
+using Tests.Runtime.Engine;
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Service;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace TripolisInc.Test.Runtime
+namespace Tests.Runtime.Tests.Service
 {
     [TestFixture(Category = "Service")]
     public class TestEcsWorldsContainer

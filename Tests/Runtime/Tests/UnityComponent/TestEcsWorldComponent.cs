@@ -10,16 +10,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Leopotam.EcsLite;
 using NUnit.Framework;
-using Tests.Runtime.Components;
-using Tests.Runtime.UnityComponents;
+using Tests.Runtime.Ecs.Systems;
+using Tests.Runtime.Engine;
+using Tests.Runtime.Helpers;
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Service;
-using TripolisInc.Test.EcsCore;
-using TripolisInc.Test.Runtime.Helpers;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace TripolisInc.Test.Runtime.UnityComponent
+namespace Tests.Runtime.Tests.UnityComponent
 {
     [TestFixture(Category = "Unity Component")]
     public class TestEcsWorldComponent
@@ -184,8 +183,8 @@ namespace TripolisInc.Test.Runtime.UnityComponent
             yield return new InitializationCase() { sharedData = null, systems = new[] { new SpySystem() } };
             yield return new InitializationCase()
             {
-                sharedData = new TestSystem(),
-                systems = new IEcsSystem[] { new SpySystem(), new SpySystem(), new TestSystem() }
+                sharedData = new StubTestSystem(),
+                systems = new IEcsSystem[] { new SpySystem(), new SpySystem(), new StubTestSystem() }
             };
             yield return new InitializationCase() { sharedData = 10, systems = Array.Empty<IEcsSystem>() };
         }

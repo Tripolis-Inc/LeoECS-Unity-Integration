@@ -6,7 +6,7 @@
 using Leopotam.EcsLite;
 using TripolisInc.EcsCore.GameComponent;
 
-namespace Tests.Runtime.UnityComponents
+namespace Tests.Runtime.Engine
 {
     public class StubWorldComponent : EcsWorldComponent
     {

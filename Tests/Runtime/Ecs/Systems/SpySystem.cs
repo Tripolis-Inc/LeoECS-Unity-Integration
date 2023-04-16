@@ -5,7 +5,7 @@
 
 using Leopotam.EcsLite;
 
-namespace Tests.Runtime.Components
+namespace Tests.Runtime.Ecs.Systems
 {
     public class SpySystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem, IEcsPreInitSystem, IEcsPostDestroySystem, IEcsPostRunSystem
     {

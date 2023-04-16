@@ -7,7 +7,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace TripolisInc.Test.Runtime
+namespace Tests.Runtime.Tests
 {
     public class EmptyTest
     {

@@ -6,7 +6,7 @@
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Interfaces;
 
-namespace Tests.Runtime.Components
+namespace Tests.Runtime.Engine
 {
     public class SpyEntityComponent : IEcsEntityComponent
     {
