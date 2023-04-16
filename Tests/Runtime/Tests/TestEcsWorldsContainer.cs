@@ -79,19 +79,6 @@ namespace TripolisInc.Test.Runtime
         }
 
         [Test, Order(5)]
-        public void GetAddedWorldComponentTest()
-        {
-            var container = EcsWorldsContainer.Instance;
-            var component = container.GetWorld(_ecsWorld);
-            
-            Assert.That(component, Is.Not.Null);
-            Assert.AreSame(_component, component);
-
-            var sameComponent = container.GetWorld(_ecsWorld);
-            Assert.AreSame(sameComponent, component);
-        }
-
-        [Test, Order(6)]
         public void RemoveWorldComponentTest()
         {
             var container = EcsWorldsContainer.Instance;

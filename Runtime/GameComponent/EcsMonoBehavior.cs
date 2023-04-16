@@ -10,6 +10,6 @@ namespace TripolisInc.EcsCore.GameComponent
 {
     public abstract class EcsMonoBehavior : MonoBehaviour, IMonoBehavior
     {
-        public virtual bool HasInstance() => gameObject != null;
+        public virtual bool HasInstance() => this != null;
     }
 }

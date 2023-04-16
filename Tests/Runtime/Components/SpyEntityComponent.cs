@@ -10,7 +10,7 @@ namespace Tests.Runtime.Components
 {
     public class SpyEntityComponent : IEcsEntityComponent
     {
-        public int EntityId;
+        public int EntityId { get; private set; }
         public bool HasCheckInstance;
         public EcsWorldComponent WorldComponent;
         public int BindCounter;

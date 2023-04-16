@@ -29,6 +29,9 @@ namespace TripolisInc.EcsCore.GameComponent
         private int _entityId;
         private bool _isInited = false;
 
+        public bool IsInited => _isInited;
+        public int EntityId => _entityId;
+
         private void Start()
         {
             if (_isInited)
@@ -39,6 +42,7 @@ namespace TripolisInc.EcsCore.GameComponent
             {
                 Debug.LogError("Cannot find ecs world.");
                 Destroy(this);
+                return;
             }
 
             world.BindEntity(this);
@@ -91,9 +95,7 @@ namespace TripolisInc.EcsCore.GameComponent
             }
         }
 
-        private void OnDestroy() => Dispose();
-
-        public void Dispose()
+        protected virtual void OnDestroy()
         {
             if (world == null)
                 return;
@@ -103,6 +105,12 @@ namespace TripolisInc.EcsCore.GameComponent
                 return;
             
             ecsWorld.DelEntity(_entityId);
+        }
+
+        public void Dispose()
+        {
+            if (HasInstance())
+                Destroy(this);
         }
 
 #if UNITY_EDITOR

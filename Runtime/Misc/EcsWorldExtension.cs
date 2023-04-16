@@ -5,7 +5,6 @@
 
 using System;
 using Leopotam.EcsLite;
-using TripolisInc.EcsCore.Component;
 using TripolisInc.EcsCore.GameComponent;
 using TripolisInc.EcsCore.Interfaces;
 using TripolisInc.EcsCore.Service;
@@ -15,16 +14,11 @@ namespace TripolisInc.EcsCore.Misc
 {
     public static class EcsWorldExtension
     {
-        public static readonly int DontCreatedEntity = -1;
-        
-        public static bool IsGameObjectEntity(this EcsWorld world, int entity) =>
-            world.GetPool<UnityComponent<EcsEntityComponent>>().Has(entity);
-
         public static int CreateEntityFromPrefab<T>(this EcsWorld world, GameObject prefab, Transform parent = null)  where T : EcsMonoBehavior, IEcsEntityComponent
         {
             var worldComponent = EcsWorldsContainer.Instance.GetWorld(world);
             if (worldComponent == null)
-                return DontCreatedEntity;
+                throw new ArgumentException($"World component not found or destroyed for {world}");
 
             return worldComponent.CreateEntityFromPrefab<T>(prefab, parent);
         }
@@ -33,7 +27,7 @@ namespace TripolisInc.EcsCore.Misc
         {
             var worldComponent = EcsWorldsContainer.Instance.GetWorld(world);
             if (worldComponent == null)
-                return DontCreatedEntity;
+                throw new ArgumentException($"World component not found or destroyed for {world}");
 
             return worldComponent.CreateEntity<T>(name, parent);
         }

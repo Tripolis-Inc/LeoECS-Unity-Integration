@@ -103,7 +103,7 @@ namespace TripolisInc.Test.Runtime.UnityComponent
             TestEntityCreation(ecsWorld, CASE_ENTITY_NAMES,
                 (string name) => component.CreateEntity<EcsEntityComponent>(name, _container.transform));
 
-            var prefabCases = new[] { Resources.Load<GameObject>(TestConstants.PrefabPath), new GameObject("Test") };
+            var prefabCases = new[] { Resources.Load<GameObject>(TestConstants.TestPrefabPath), new GameObject("Test") };
             Assert.Throws(typeof(ArgumentNullException), () => component.CreateEntityFromPrefab<EcsEntityComponent>(null));
             TestEntityCreation(ecsWorld, prefabCases,
                 prefab => component.CreateEntityFromPrefab<EcsEntityComponent>(prefab, _container.transform));
