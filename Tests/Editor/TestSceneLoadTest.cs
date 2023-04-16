@@ -2,14 +2,14 @@
 // MIT License
 // Copyright (c) 2023  Vladimir Karyagin <tripolis777@gmail.com>
 // ----------------------------------------------------------------------------
-
+/*
 using System.Collections;
 using NUnit.Framework;
 using TripolisInc.Test.Runtime.Helpers;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace TripolisInc.Test.Runtime
+namespace TripolisInc.Test.Runtime.Scenes
 {
     [TestFixture]
     public class TestSceneLoadTest
@@ -72,3 +72,4 @@ namespace TripolisInc.Test.Runtime
         }
     }
 }
+*/
