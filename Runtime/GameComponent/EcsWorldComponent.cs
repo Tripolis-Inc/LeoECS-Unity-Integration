@@ -14,12 +14,11 @@ namespace TripolisInc.EcsCore.GameComponent
 {
     public abstract class EcsWorldComponent : EcsMonoBehavior
     {
-        private EcsWorld _world;
+        private EcsWorld _world = new EcsWorld();
         private IEcsSystems _systems;
 
         protected virtual void Start()
         {
-            _world = new EcsWorld();
             EcsWorldsContainer.Instance.AddWorld(_world, this);
             
             _systems = new EcsSystems(_world, GetSharedData());
