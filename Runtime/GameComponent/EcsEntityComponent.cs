@@ -11,9 +11,17 @@ using TripolisInc.EcsCore.Interfaces;
 using TripolisInc.EcsCore.Misc;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEngine.Scripting.APIUpdating;
+#endif
+
 namespace TripolisInc.EcsCore.GameComponent
 {
     public class EcsEntityComponent : EcsMonoBehavior, IEcsEntityComponent
+#if UNITY_EDITOR
+    , ISerializationCallbackReceiver
+#endif
     {
 #if UNITY_EDITOR
         public const string ECS_COMPONENTS_PROP_NAME = nameof(ecsComponents);
@@ -138,7 +146,24 @@ namespace TripolisInc.EcsCore.GameComponent
             ecsComponents.RemoveAt(index);
         }
         
-        public ComponentContainer GetEcsComponent(int index) => ecsComponents[index]; 
+        public ComponentContainer GetEcsComponent(int index) => ecsComponents[index];
+        
+        public virtual void OnBeforeSerialize()
+        {
+            if (!SerializationUtility.HasManagedReferencesWithMissingTypes(this))
+                return;
+
+            foreach (var missingType in SerializationUtility.GetManagedReferencesWithMissingTypes(this))
+                Debug.LogError(
+                    $"Find missing component: {missingType.className}, Namespace: {missingType.namespaceName}, Assembly: {missingType.assemblyName}. Use {nameof(MovedFromAttribute)} when change component name or namespace.");
+         
+            if (SerializationUtility.ClearAllManagedReferencesWithMissingTypes(this))
+                Debug.LogWarning("All missing components has been removed.");
+        }
+
+        public virtual void OnAfterDeserialize()
+        {
+        }
 #endif
 
         [Serializable]
