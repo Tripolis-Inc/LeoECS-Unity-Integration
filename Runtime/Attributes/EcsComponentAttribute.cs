@@ -7,8 +7,8 @@ using System;
 
 namespace TripolisInc.EcsCore.Attributes
 {
-    [AttributeUsage(AttributeTargets.Struct)]
-    public class EcsComponentAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Struct, Inherited = false)]
+    public sealed class EcsComponentAttribute : Attribute
     {
         public string displayedName;
         public string path;
