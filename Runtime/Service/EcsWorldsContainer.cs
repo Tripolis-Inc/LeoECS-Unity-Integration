@@ -14,11 +14,11 @@ namespace TripolisInc.EcsCore.Service
     {
         public static EcsWorldsContainer Instance { get; } = new EcsWorldsContainer();
 
-        private Dictionary<EcsWorld, EcsWorldComponent> _worldComponents = new Dictionary<EcsWorld, EcsWorldComponent>();
+        private Dictionary<EcsWorld, BaseEcsWorldComponent> _worldComponents = new Dictionary<EcsWorld, BaseEcsWorldComponent>();
         
         private EcsWorldsContainer() {}
 
-        public bool AddWorld(EcsWorld world, EcsWorldComponent component)
+        public bool AddWorld(EcsWorld world, BaseEcsWorldComponent component)
         {
             if (world == null)
             {
@@ -53,7 +53,7 @@ namespace TripolisInc.EcsCore.Service
             _worldComponents.Remove(world);
         }
 
-        public EcsWorldComponent GetWorld(EcsWorld world)
+        public BaseEcsWorldComponent GetWorld(EcsWorld world)
         {
             if (world != null && _worldComponents.TryGetValue(world, out var component))
                 return component;

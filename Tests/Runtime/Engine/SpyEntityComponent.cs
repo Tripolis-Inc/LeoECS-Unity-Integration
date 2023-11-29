@@ -12,7 +12,7 @@ namespace Tests.Runtime.Engine
     {
         public int EntityId { get; private set; }
         public bool HasCheckInstance;
-        public EcsWorldComponent WorldComponent;
+        public BaseEcsWorldComponent WorldComponent;
         public int BindCounter;
 
         private bool _hasInstance;
@@ -27,7 +27,7 @@ namespace Tests.Runtime.Engine
             return _hasInstance;
         }
 
-        public void Bind(EcsWorldComponent world, int entityId)
+        public void Bind(BaseEcsWorldComponent world, int entityId)
         {
             EntityId = entityId;
             WorldComponent = world;

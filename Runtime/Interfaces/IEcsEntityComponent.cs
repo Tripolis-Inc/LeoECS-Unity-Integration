@@ -11,6 +11,6 @@ namespace TripolisInc.EcsCore.Interfaces
     public interface IEcsEntityComponent : IMonoBehavior, IDisposable
     {
         int EntityId { get; }
-        void Bind(EcsWorldComponent world, int entityId);
+        void Bind(BaseEcsWorldComponent world, int entityId);
     }
 }

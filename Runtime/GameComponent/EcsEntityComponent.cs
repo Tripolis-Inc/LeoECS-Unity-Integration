@@ -28,7 +28,7 @@ namespace TripolisInc.EcsCore.GameComponent
 #endif
         
         [SerializeField] 
-        private EcsWorldComponent world;
+        private BaseEcsWorldComponent world;
         [SerializeField]
         private UnityEngine.Component[] unityComponents = Array.Empty<UnityEngine.Component>();
         [SerializeField]
@@ -56,7 +56,7 @@ namespace TripolisInc.EcsCore.GameComponent
             world.BindEntity(this);
         }
 
-        public void Bind(EcsWorldComponent world, int entityId)
+        public void Bind(BaseEcsWorldComponent world, int entityId)
         {
             if (_isInited)
                 return;
